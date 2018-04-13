@@ -26,11 +26,6 @@ You can watch this demo along with an introduction to Kubernetes concepts [here]
    ./mvnw -DskipTests package
    ```
 
-1. Build a Docker image and push the image to Docker Hub
-   ```
-   docker build -t <your Docker Hub account>/spring-boot-postgres-on-k8s:v1 .
-   docker push <your Docker Hub account>/spring-boot-postgres-on-k8s:v1
-   ```
 
 1. Replace `<your Docker Hub account>` with your account name in `specs/spring-boot-app.yml`, then deploy the app
    ```
@@ -39,10 +34,10 @@ You can watch this demo along with an introduction to Kubernetes concepts [here]
 
 1. Create an external load balancer for your app
    ```
-   kubectl expose deployment spring-boot-postgres-sample --type=LoadBalancer --port=8080
+   kubectl expose deployment spring-boot-postgres-sample --type=LoadBalancer --port=9000
    ```
 
-1. Get the External IP address of Service, then the app will be accessible at `http://<External IP Address>:8080`
+1. Get the External IP address of Service, then the app will be accessible at `http://<External IP Address>:9000`
    ```
    kubectl get svc spring-boot-postgres-sample
    ```
@@ -56,7 +51,7 @@ You can watch this demo along with an introduction to Kubernetes concepts [here]
 ## Updating your application
 1. Update the image that the containers in your deployment are using
    ```
-   kubectl set image deployment/spring-boot-postgres-sample spring-boot-postgres-sample=<your Docker Hub account>/spring-boot-postgres-on-k8s:v2
+   kubectl set image deployment/spring-boot-postgres-sample spring-boot-postgres-sample=kzybala/spring-boot-postgres-on-k8s:v2
    ```
 
 ## Deleting the Resources
